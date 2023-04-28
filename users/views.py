@@ -49,6 +49,14 @@ class pass_info(generics.CreateAPIView) :
         pas =Passenger.objects.get(card = id)
         return Response(PassengerSerializer(pas).data)
 
+
+class pass_info_test(generics.CreateAPIView) :
+     serializer_class  = PassengerSerializer
+     def post(self, request, *args, **kwargs): 
+        id = request.data['id']
+        pas =Passenger.objects.get(card = id)
+        return Response(PassengerSerializer(pas).data)
+
         
 
 

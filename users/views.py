@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.urls import path
 from rest_framework import generics
 from rest_framework.response import Response
+from users.firebase_realtime import realtime
 
 from users.models import *
 from users.serializers import PassengerSerializer
@@ -61,3 +62,9 @@ class pass_info_test(generics.CreateAPIView) :
 
 
 
+class realtime(generics.CreateAPIView) :
+
+     def post(self, request, *args, **kwargs): 
+        fire = realtime()
+       
+        return Response('ok')

@@ -62,7 +62,7 @@ class pass_info_test(generics.CreateAPIView) :
 
 
 
-class realtime(generics.CreateAPIView) :
+class firebase_realtime(generics.CreateAPIView) :
 
      def post(self, request, *args, **kwargs): 
         fire = realtime()

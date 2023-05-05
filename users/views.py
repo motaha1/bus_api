@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from users.firebase_realtime import realtime
 
 from users.models import *
-from users.serializers import PassengerSerializer
+from users.serializers import BusSerializer, CapSerializer, PassengerSerializer
 # Create your views here.
 
 
@@ -68,3 +68,52 @@ class firebase_realtime(generics.CreateAPIView) :
         fire = realtime()
        
         return Response('ok')
+
+
+class new_travel(generics.CreateAPIView) :
+
+     def post(self, request, *args, **kwargs): 
+        id = request.data['id']
+        travel =Travel.objects.get(id=id)
+        cap = Captine.objects.get(id=1)
+        cap.travel = travel
+        cap.save()
+
+        return Response(travel.name)
+
+
+class cap_info(generics.CreateAPIView):
+        def post(self, request, *args, **kwargs): 
+       
+        
+          cap = Captine.objects.get(id=1)
+       
+          
+
+          return Response(CapSerializer(cap).data)
+
+
+
+class buss (generics.CreateAPIView) : 
+          def post(self, request, *args, **kwargs): 
+               pas = Passenger.objects.get(id=1)
+        
+               busss = Bus.objects.filter(passenger = pas)
+          
+               
+
+               return Response(BusSerializer(busss , many = True ).data)
+
+
+    
+# class test (generics.CreateAPIView)  :
+#                def post(self, request, *args, **kwargs): 
+#                     pas = Passenger.objects.get(id=1)
+        
+#                     ts = Bus.objects.get(id = 1)
+#                     ts.passenger.add(pas)
+#                     ts.save()
+          
+               
+
+#                     return Response('ok')

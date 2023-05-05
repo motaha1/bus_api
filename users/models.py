@@ -7,7 +7,8 @@ class Passenger (models.Model):
     name = models.CharField(max_length=1000 , null=True , blank = True)
     card = models.CharField(max_length=1000 , null=True , blank = True)
     funds = models.IntegerField()
-
+    def __str__(self) :
+        return self.name
 
 
 
@@ -16,6 +17,8 @@ class Travel(models.Model) :
 
     
     price = models.IntegerField()
+    def __str__(self) :
+        return self.name
 
 
 class Captine(models.Model) :
@@ -26,6 +29,9 @@ class Captine(models.Model) :
                                 related_name="travel1",
                                 related_query_name="travel1",
                                 on_delete=models.DO_NOTHING)
+     
+     def __str__(self) :
+        return self.name
 
 
 class Bus(models.Model):

@@ -12,4 +12,5 @@ admin.site.register(Captine)
 
 
 
-
+admin.site.site_header = "Smart Bus Adminpanel"
+admin.site.site_title = "Smart Bus Adminpanel"

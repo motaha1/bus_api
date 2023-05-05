@@ -29,6 +29,7 @@ class Captine(models.Model) :
                                 related_name="travel1",
                                 related_query_name="travel1",
                                 on_delete=models.DO_NOTHING)
+     bus_no = models.IntegerField(default= 1) 
      
      def __str__(self) :
         return self.name

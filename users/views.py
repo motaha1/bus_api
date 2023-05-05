@@ -16,14 +16,19 @@ class checkout (generics.CreateAPIView):
             pas =Passenger.objects.get(card = id)
 
             travel = Captine.objects.get(id=1).travel
-
+            bus = Bus.objects.get(id = Captine.objects.get(id=1).bus_no)
+            items= bus.passenger.all()
+            if(pas in items ):
+                return Response("duplication" , status=502)
             pas.funds = pas.funds - travel.price 
             pas.save()
 
-            bus = Bus.objects.create( travel = travel , captine =Captine.objects.get(id=1))
-
-            bus.save()
+                 
+            #if(bus.pass_set.filter(id = ))
             bus.passenger.add(pas)
+            bus.save()
+
+
             return Response(pas.funds)
         
 
@@ -77,9 +82,15 @@ class new_travel(generics.CreateAPIView) :
         travel =Travel.objects.get(id=id)
         cap = Captine.objects.get(id=1)
         cap.travel = travel
+        
+        
+        bus = Bus.objects.create( travel = travel , captine =Captine.objects.get(id=1))
+        cap.bus_no = bus.id
         cap.save()
+        bus.save()
+        #bus.passenger.add(pas)
 
-        return Response(travel.name)
+        return Response(bus.id)
 
 
 class cap_info(generics.CreateAPIView):
@@ -112,6 +123,19 @@ class buss (generics.CreateAPIView) :
         
 #                     ts = Bus.objects.get(id = 1)
 #                     ts.passenger.add(pas)
+#                     ts.save()
+          
+               
+
+#                     return Response('ok')
+
+
+# class test (generics.CreateAPIView)  :
+#                def post(self, request, *args, **kwargs): 
+#                     pas = Passenger.objects.get(id=1)
+        
+#                     ts = Bus.objects.get(id = 4)
+#                     ts.passenger.clear()
 #                     ts.save()
           
                

@@ -6,6 +6,8 @@ class Passenger (models.Model):
     no = models.CharField(max_length=1000 , null=True , blank = True)
     name = models.CharField(max_length=1000 , null=True , blank = True)
     card = models.CharField(max_length=1000 , null=True , blank = True)
+    phone = models.CharField(max_length=1000 ,null=True , blank = True)
+
     funds = models.IntegerField()
     def __str__(self) :
         return self.name

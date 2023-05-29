@@ -11,6 +11,12 @@ path(r'firebase', firebase_realtime.as_view()),
 path(r'new_travel', new_travel.as_view()),
 path(r'cap_info', cap_info.as_view()),
 path(r'buss', buss.as_view()),
+path(r'discount_new', checkout_new.as_view()),
+path(r'get_gps', get_gps.as_view()),
+
+
+
+
 # path(r'test', test.as_view()),
 
 

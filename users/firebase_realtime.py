@@ -12,4 +12,13 @@ def realtime():
 
 
 
+def get_gsp_lat():
+    result = firebase.get('/output/lat' , '')
+    #print(result)
+    return result
 
+
+def get_gsp_long():
+    result = firebase.get('/output/long' , '')
+    #print(result)
+    return result

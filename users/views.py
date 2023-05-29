@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import path
 from rest_framework import generics
 from rest_framework.response import Response
-from users.firebase_realtime import realtime
+from users.firebase_realtime import *
 
 from users.models import *
 from users.serializers import BusSerializer, CapSerializer, PassengerSerializer
@@ -116,6 +116,43 @@ class buss (generics.CreateAPIView) :
                return Response(BusSerializer(busss , many = True ).data)
 
 
+
+class checkout_new (generics.CreateAPIView):
+        def post(self, request, *args, **kwargs):
+            id = request.data['id']
+           
+            pas =Passenger.objects.get(card = id)
+
+            travel = Captine.objects.get(id=1).travel
+            bus = Bus.objects.get(id = Captine.objects.get(id=1).bus_no)
+            items= bus.passenger.all()
+            if(pas in items ):
+                return Response("duplication" , status=502)
+            pas.funds = pas.funds - travel.price 
+            pas.save()
+
+                 
+            #if(bus.pass_set.filter(id = ))
+            bus.passenger.add(pas)
+            bus.save()
+
+
+            return Response({
+                'funds':pas.funds , 
+                'phone' : pas.phone, 
+                'travel' : travel.name})
+
+
+
+class get_gps (generics.CreateAPIView):
+        def post(self, request, *args, **kwargs):
+                lat = get_gsp_lat()
+                longg = get_gsp_long()
+
+                return Response({
+                        'lat' : lat , 
+                        'long' : longg 
+                })
     
 # class test (generics.CreateAPIView)  :
 #                def post(self, request, *args, **kwargs): 

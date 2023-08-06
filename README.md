@@ -1,4 +1,4 @@
-# Ask Care Backend
+# Smart Bus Backend
 #### Steps to run this project locally on windows:
 - Requirements:
     1. Python 3.8.x 64x, download it form [here](https://www.python.org/downloads/).
